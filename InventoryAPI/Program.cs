@@ -11,6 +11,7 @@ using Services.Contract;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using Serilog;
 
 namespace InventoryAPI
 {
@@ -18,14 +19,33 @@ namespace InventoryAPI
     {
         public static void Main(string[] args)
         {
+            // Add Logger after nuget installation
+            Log.Logger = new LoggerConfiguration()
+                        .WriteTo.Console()
+                        .WriteTo.File("Logger/ApplicationLog-.txt")
+                        .Enrich.FromLogContext()
+                        .MinimumLevel.Information()
+                        .CreateLogger();
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            // use serilog 
+            builder.Host.UseSerilog();
+
             // Passed the reference of the data project over here
             builder.Services.AddDbContext<InvetoryDbContext>(options => {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"));
             });
 
+            // install nuget for versioning and add service here
+            builder.Services.AddApiVersioning(options => {
+                options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified= true;
+                options.ReportApiVersions = true;
+            
+            });
             // register service for JWT token 01
             // this will authenticate the token
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -41,7 +61,12 @@ namespace InventoryAPI
         
                 });
 
-            builder.Services.AddControllers();
+             builder.Services.AddControllers();
+
+            // for content negotialtion 01
+            //builder.Services.AddControllers().AddXmlSerializerFormatters();
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -69,6 +94,7 @@ namespace InventoryAPI
             app.UseAuthorization();
 
             // call the custom middleware 
+            //comment for   for content negotialtion 02 & 01 at top uncomment
             app.UseMiddleware<CommonResponseMiddleware>();
 
             app.MapControllers();

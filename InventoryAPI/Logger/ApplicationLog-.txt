@@ -1,0 +1,103 @@
+2025-09-17 00:05:48.668 +05:30 [INF] User profile is available. Using 'C:\Users\HP\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-17 00:05:49.564 +05:30 [INF] Now listening on: https://localhost:7126
+2025-09-17 00:05:49.890 +05:30 [INF] Now listening on: http://localhost:5254
+2025-09-17 00:05:50.620 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/swagger/index.html - null null
+2025-09-17 00:05:50.635 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-17 00:05:50.655 +05:30 [INF] Hosting environment: Development
+2025-09-17 00:05:50.671 +05:30 [INF] Content root path: D:\2025\FullStack\dotnet_r\BackEndProject\InventoryAPI
+2025-09-17 00:05:51.428 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/swagger/index.html - 200 null text/html;charset=utf-8 810.6153ms
+2025-09-17 00:05:51.596 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-17 00:05:51.598 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/_vs/browserLink - null null
+2025-09-17 00:05:51.814 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 217.8938ms
+2025-09-17 00:05:52.445 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/_vs/browserLink - 200 null text/javascript; charset=UTF-8 846.4225ms
+2025-09-17 00:05:53.246 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/swagger/v1/swagger.json - null null
+2025-09-17 00:05:53.332 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 86.2168ms
+2025-09-17 00:06:22.933 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7126/api/Item/getItemByCategory/1 - null null
+2025-09-17 00:06:23.394 +05:30 [INF] Executing endpoint 'InventoryAPI.Controllers.ItemController.Get (InventoryAPI)'
+2025-09-17 00:06:23.536 +05:30 [INF] Route matched with {action = "Get", controller = "Item"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller InventoryAPI.Controllers.ItemController (InventoryAPI).
+2025-09-17 00:06:32.172 +05:30 [INF] Executed DbCommand (325ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CategoryName], [i0].[Id], [i0].[ItemCategoryId], [i0].[ItemDescription], [i0].[ItemName]
+FROM (
+    SELECT TOP(1) [i].[Id], [i].[CategoryName]
+    FROM [ItemsCategories] AS [i]
+    WHERE [i].[Id] = @__categoryId_0
+) AS [t]
+LEFT JOIN [Items] AS [i0] ON [t].[Id] = [i0].[ItemCategoryId]
+ORDER BY [t].[Id]
+2025-09-17 00:06:32.668 +05:30 [INF] Executing OkObjectResult, writing value of type 'Models.Items.Response.GetItemsByCategoryResponseModel'.
+2025-09-17 00:06:32.797 +05:30 [INF] Executed action InventoryAPI.Controllers.ItemController.Get (InventoryAPI) in 9205.3576ms
+2025-09-17 00:06:32.811 +05:30 [INF] Executed endpoint 'InventoryAPI.Controllers.ItemController.Get (InventoryAPI)'
+2025-09-17 00:06:32.958 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7126/api/Item/getItemByCategory/1 - 200 null application/json; charset=utf-8 10024.4887ms
+2025-09-17 00:07:59.011 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7126/api/Item/getItemByCategory/1 - null null
+2025-09-17 00:07:59.056 +05:30 [INF] Executing endpoint 'InventoryAPI.Controllers.ItemController.Get (InventoryAPI)'
+2025-09-17 00:07:59.070 +05:30 [INF] Route matched with {action = "Get", controller = "Item"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller InventoryAPI.Controllers.ItemController (InventoryAPI).
+2025-09-17 00:07:59.296 +05:30 [INF] Executed DbCommand (19ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CategoryName], [i0].[Id], [i0].[ItemCategoryId], [i0].[ItemDescription], [i0].[ItemName]
+FROM (
+    SELECT TOP(1) [i].[Id], [i].[CategoryName]
+    FROM [ItemsCategories] AS [i]
+    WHERE [i].[Id] = @__categoryId_0
+) AS [t]
+LEFT JOIN [Items] AS [i0] ON [t].[Id] = [i0].[ItemCategoryId]
+ORDER BY [t].[Id]
+2025-09-17 00:07:59.313 +05:30 [INF] Executing OkObjectResult, writing value of type 'Models.Items.Response.GetItemsByCategoryResponseModel'.
+2025-09-17 00:07:59.323 +05:30 [INF] Executed action InventoryAPI.Controllers.ItemController.Get (InventoryAPI) in 248.9221ms
+2025-09-17 00:07:59.364 +05:30 [INF] Executed endpoint 'InventoryAPI.Controllers.ItemController.Get (InventoryAPI)'
+2025-09-17 00:07:59.370 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7126/api/Item/getItemByCategory/1 - 200 null application/json; charset=utf-8 359.4785ms
+2025-09-17 00:19:20.473 +05:30 [INF] User profile is available. Using 'C:\Users\HP\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-17 00:19:21.521 +05:30 [INF] Now listening on: https://localhost:7126
+2025-09-17 00:19:21.640 +05:30 [INF] Now listening on: http://localhost:5254
+2025-09-17 00:19:22.292 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-17 00:19:22.329 +05:30 [INF] Hosting environment: Development
+2025-09-17 00:19:22.827 +05:30 [INF] Content root path: D:\2025\FullStack\dotnet_r\BackEndProject\InventoryAPI
+2025-09-17 00:19:22.975 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/swagger/index.html - null null
+2025-09-17 00:19:23.691 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-17 00:19:23.692 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/swagger/index.html - 200 null text/html;charset=utf-8 699.7973ms
+2025-09-17 00:19:23.884 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/_vs/browserLink - null null
+2025-09-17 00:19:23.763 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 71.8787ms
+2025-09-17 00:19:24.237 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/_vs/browserLink - 200 null text/javascript; charset=UTF-8 352.3553ms
+2025-09-17 00:19:25.229 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/swagger/v1/swagger.json - null null
+2025-09-17 00:19:25.324 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 95.6497ms
+2025-09-17 00:19:37.658 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7126/api/Item/getItemByCategory/2 - null null
+2025-09-17 00:19:38.408 +05:30 [INF] Executing endpoint 'InventoryAPI.Controllers.ItemController.Get (InventoryAPI)'
+2025-09-17 00:19:38.655 +05:30 [INF] Route matched with {action = "Get", controller = "Item"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller InventoryAPI.Controllers.ItemController (InventoryAPI).
+2025-09-17 00:19:40.156 +05:30 [INF] Going to invoke getItemByCategory method
+2025-09-17 00:21:25.257 +05:30 [INF] User profile is available. Using 'C:\Users\HP\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-17 00:21:26.274 +05:30 [INF] Now listening on: https://localhost:7126
+2025-09-17 00:21:27.352 +05:30 [INF] Now listening on: http://localhost:5254
+2025-09-17 00:21:27.528 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/swagger/index.html - null null
+2025-09-17 00:21:28.197 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/swagger/index.html - 200 null text/html;charset=utf-8 672.4329ms
+2025-09-17 00:21:28.281 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-17 00:21:28.368 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-17 00:21:28.403 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/_vs/browserLink - null null
+2025-09-17 00:21:28.445 +05:30 [INF] Hosting environment: Development
+2025-09-17 00:21:28.484 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 116.4252ms
+2025-09-17 00:21:28.813 +05:30 [INF] Content root path: D:\2025\FullStack\dotnet_r\BackEndProject\InventoryAPI
+2025-09-17 00:21:28.862 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/_vs/browserLink - 200 null text/javascript; charset=UTF-8 458.7278ms
+2025-09-17 00:21:29.877 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7126/swagger/v1/swagger.json - null null
+2025-09-17 00:21:30.000 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7126/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 123.5278ms
+2025-09-17 00:21:40.125 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7126/api/Auth?username=test&password=test - null null
+2025-09-17 00:21:40.360 +05:30 [INF] Executing endpoint 'InventoryAPI.Controllers.AuthController.ValidateUser (InventoryAPI)'
+2025-09-17 00:21:40.468 +05:30 [INF] Route matched with {action = "ValidateUser", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ValidateUser(System.String, System.String) on controller InventoryAPI.Controllers.AuthController (InventoryAPI).
+2025-09-17 00:21:40.706 +05:30 [INF] Executing OkObjectResult, writing value of type 'Models.Common.TokenResponseModel'.
+2025-09-17 00:21:40.781 +05:30 [INF] Executed action InventoryAPI.Controllers.AuthController.ValidateUser (InventoryAPI) in 289.0233ms
+2025-09-17 00:21:40.871 +05:30 [INF] Executed endpoint 'InventoryAPI.Controllers.AuthController.ValidateUser (InventoryAPI)'
+2025-09-17 00:21:40.964 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7126/api/Auth?username=test&password=test - 200 null application/json; charset=utf-8 839.163ms
+2025-09-17 00:22:05.827 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7126/api/Item/getItemByCategory/2 - null null
+2025-09-17 00:22:06.002 +05:30 [INF] Executing endpoint 'InventoryAPI.Controllers.ItemController.Get (InventoryAPI)'
+2025-09-17 00:22:06.033 +05:30 [INF] Route matched with {action = "Get", controller = "Item"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller InventoryAPI.Controllers.ItemController (InventoryAPI).
+2025-09-17 00:22:11.756 +05:30 [INF] Going to invoke getItemByCategory method
+2025-09-17 00:22:19.536 +05:30 [INF] Executed DbCommand (214ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CategoryName], [i0].[Id], [i0].[ItemCategoryId], [i0].[ItemDescription], [i0].[ItemName]
+FROM (
+    SELECT TOP(1) [i].[Id], [i].[CategoryName]
+    FROM [ItemsCategories] AS [i]
+    WHERE [i].[Id] = @__categoryId_0
+) AS [t]
+LEFT JOIN [Items] AS [i0] ON [t].[Id] = [i0].[ItemCategoryId]
+ORDER BY [t].[Id]
+2025-09-17 00:22:31.169 +05:30 [INF] getItemByCategory method executed
+2025-09-17 00:22:43.373 +05:30 [INF] Executing OkObjectResult, writing value of type 'Models.Items.Response.GetItemsByCategoryResponseModel'.
+2025-09-17 00:22:43.393 +05:30 [INF] Executed action InventoryAPI.Controllers.ItemController.Get (InventoryAPI) in 37353.6432ms
+2025-09-17 00:22:43.396 +05:30 [INF] Executed endpoint 'InventoryAPI.Controllers.ItemController.Get (InventoryAPI)'
+2025-09-17 00:22:43.500 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7126/api/Item/getItemByCategory/2 - 200 null application/json; charset=utf-8 37673.1618ms

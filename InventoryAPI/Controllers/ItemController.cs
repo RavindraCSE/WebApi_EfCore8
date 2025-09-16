@@ -14,10 +14,12 @@ namespace InventoryAPI.Controllers
     public class ItemController : ControllerBase
     {
         private readonly IItemService _itemService;
+        private readonly ILogger<ItemController> _logger;
 
-        public ItemController(IItemService itemService)
+        public ItemController(IItemService itemService , ILogger<ItemController> logger)
         {
             _itemService = itemService;
+            _logger = logger;
         }
 
         /// <summary>
@@ -51,11 +53,16 @@ namespace InventoryAPI.Controllers
         [Route("getItemByCategory/{categoryId:int}")]
         public async Task<IActionResult> Get(int categoryId)
         {
+            // add line for logger this by default in dot net 
+            _logger.LogInformation("Going to invoke getItemByCategory method");
             var items = await _itemService.GetItemsByCategoryAsync(categoryId);
+            
             // for common output by API
             // commented as middle ware is used
-           // var apiResponseModel = new ApiResponseModel<GetItemsByCategoryResponseModel>(true, items,"Items Fetched successfully.");
-           // return Ok(items);
+            // var apiResponseModel = new ApiResponseModel<GetItemsByCategoryResponseModel>(true, items,"Items Fetched successfully.");
+            // return Ok(items);
+
+            _logger.LogInformation("getItemByCategory method executed");
             return Ok(items);
         }
 
