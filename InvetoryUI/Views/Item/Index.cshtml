@@ -1,0 +1,11 @@
+﻿@using InvetoryUI.Models.ViewModels
+@model ItemViewModel
+
+<h1>Category Name : @Model.CategoryName</h1>
+
+<ul>
+@foreach(var items in Model.Items)
+{
+    <li>@items.ItemName - @items.ItemDescription</li>
+}
+</ul>

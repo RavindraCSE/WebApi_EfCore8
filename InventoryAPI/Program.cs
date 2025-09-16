@@ -3,10 +3,14 @@ using Data;
 using Data.Concrete;
 using Data.Contract;
 using InventoryAPI.Middlewares;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Services.Concrete;
 using Services.Contract;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace InventoryAPI
 {
@@ -22,7 +26,21 @@ namespace InventoryAPI
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"));
             });
 
-            
+            // register service for JWT token 01
+            // this will authenticate the token
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => {
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        IssuerSigningKey= new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                            builder.Configuration["Jwt:Secret"]!)),
+                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                        ValidAudience = builder.Configuration["Jwt:Audience"],
+                        ClockSkew=TimeSpan.Zero,
+                    };
+        
+                });
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -30,7 +48,7 @@ namespace InventoryAPI
 
             builder.Services.AddTransient<IItemService, ItemService>();
             builder.Services.AddTransient<IItemRepository, ItemRepository>();
-
+            builder.Services.AddTransient<ITokenGeneratorService,TokenGeneratorService>();
 
             // register the assembly for the auto mapper to work 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -45,6 +63,8 @@ namespace InventoryAPI
             }
 
             app.UseHttpsRedirection();
+            // add middleware for  JWT token 02
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
