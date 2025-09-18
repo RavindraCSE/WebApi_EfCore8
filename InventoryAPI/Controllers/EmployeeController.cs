@@ -24,7 +24,7 @@ namespace InventoryAPI.Controllers
         [Route("getemployees")]
         public IActionResult Get() 
         {
-            var enpplyee = new { FirstName = "Rahj", LastName = "Kumar" };
+            var enpplyee = new { FirstName = "Raama", LastName = "Kumar" };
             return Ok(enpplyee);
         
         }
